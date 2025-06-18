@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified Web</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        .nav-links a:hover {
+            color: #3498db;
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+        
+        main {
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .content-section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .content-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+        }
+        
+        /* Game Section Styles */
+        .games-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .game {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .game canvas {
+            background: #f0f0f0;
+            border-radius: 4px;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .game h3 {
+            margin: 1rem 0;
+            color: #2c3e50;
+        }
+        
+        .game p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        
+        .game-controls {
+            margin-top: 1rem;
+        }
+        
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 0.5rem;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #2980b9;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Unified Web</div>
+                <ul class="nav-links">
+                    <li><a href="#apps">Apps</a></li>
+                    <li><a href="#games">Games</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Welcome to Unified Web</h1>
+                <p>Your gateway to amazing apps and exciting games all in one place.</p>
+            </div>
+        </section>
+        
+        <section id="apps" class="content-section">
+            <div class="container">
+                <h2>Apps Section</h2>
+                <p>Discover our collection of useful applications designed to make your life easier.</p>
+                <!-- Add your apps content here -->
+            </div>
+        </section>
+        
+        <section id="games" class="content-section">
+            <div class="container">
+                <h2>Games Section</h2>
+                <p>Enjoy these simple 2D games right in your browser!</p>
+                
+                <div class="games-container">
+                    <!-- Game 1: Click the Target -->
+                    <div class="game">
+                        <h3>Target Practice</h3>
+                        <p>Click the moving target as many times as you can in 30 seconds!</p>
+                        <canvas id="targetGame" width="300" height="200"></canvas>
+                        <div class="game-controls">
+                            <p>Score: <span id="targetScore">0</span></p>
+                            <p>Time: <span id="targetTime">30</span>s</p>
+                            <button id="startTarget">Start Game</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Game 2: Snake -->
+                    <div class="game">
+                        <h3>Classic Snake</h3>
+                        <p>Use arrow keys to move the snake and eat the food.</p>
+                        <canvas id="snakeGame" width="300" height="200"></canvas>
+                        <div class="game-controls">
+                            <p>Score: <span id="snakeScore">0</span></p>
+                            <button id="startSnake">Start Game</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Game 3: Memory Match -->
+                    <div class="game">
+                        <h3>Memory Match</h3>
+                        <p>Find all matching pairs of cards.</p>
+                        <div id="memoryGame" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin: 0 auto; width: 300px;"></div>
+                        <div class="game-controls">
+                            <p>Moves: <span id="memoryMoves">0</span></p>
+                            <button id="startMemory">New Game</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Unified Web. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Game 1: Target Practice
+        const targetCanvas = document.getElementById('targetGame');
+        const targetCtx = targetCanvas.getContext('2d');
+        let targetX = 100;
+        let targetY = 100;
+        let targetRadius = 20;
+        let targetScore = 0;
+        let targetTime = 30;
+        let targetGameInterval;
+        let targetMoveInterval;
+        let isTargetGameRunning = false;
+
+        document.getElementById('startTarget').addEventListener('click', startTargetGame);
+
+        function startTargetGame() {
+            if (isTargetGameRunning) return;
+            
+            isTargetGameRunning = true;
+            targetScore = 0;
+            targetTime = 30;
+            document.getElementById('targetScore').textContent = targetScore;
+            document.getElementById('targetTime').textContent = targetTime;
+            
+            // Draw initial target
+            drawTarget();
+            
+            // Start target movement
+            targetMoveInterval = setInterval(moveTarget, 1000);
+            
+            // Start timer
+            targetGameInterval = setInterval(() => {
+                targetTime--;
+                document.getElementById('targetTime').textContent = targetTime;
+                if (targetTime <= 0) {
+                    endTargetGame();
+                }
+            }, 1000);
+        }
+
+        function moveTarget() {
+            targetX = Math.random() * (targetCanvas.width - targetRadius * 2) + targetRadius;
+            targetY = Math.random() * (targetCanvas.height - targetRadius * 2) + targetRadius;
+            drawTarget();
+        }
+
+        function drawTarget() {
+            targetCtx.clearRect(0, 0, targetCanvas.width, targetCanvas.height);
+            targetCtx.beginPath();
+            targetCtx.arc(targetX, targetY, targetRadius, 0, Math.PI * 2);
+            targetCtx.fillStyle = 'red';
+            targetCtx.fill();
+            targetCtx.strokeStyle = 'white';
+            targetCtx.lineWidth = 2;
+            targetCtx.stroke();
+        }
+
+        targetCanvas.addEventListener('click', (e) => {
+            if (!isTargetGameRunning) return;
+            
+            const rect = targetCanvas.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const clickY = e.clientY - rect.top;
+            
+            const distance = Math.sqrt(
+                Math.pow(clickX - targetX, 2) + 
+                Math.pow(clickY - targetY, 2)
+            );
+            
+            if (distance <= targetRadius) {
+                targetScore++;
+                document.getElementById('targetScore').textContent = targetScore;
+                moveTarget();
+            }
+        });
+
+        function endTargetGame() {
+            clearInterval(targetGameInterval);
+            clearInterval(targetMoveInterval);
+            isTargetGameRunning = false;
+            targetCtx.clearRect(0, 0, targetCanvas.width, targetCanvas.height);
+            targetCtx.font = '20px Arial';
+            targetCtx.fillStyle = 'black';
+            targetCtx.textAlign = 'center';
+            targetCtx.fillText(`Game Over! Score: ${targetScore}`, targetCanvas.width/2, targetCanvas.height/2);
+        }
+
+        // Game 2: Snake
+        const snakeCanvas = document.getElementById('snakeGame');
+        const snakeCtx = snakeCanvas.getContext('2d');
+        const box = 20;
+        let snake = [{x: 9 * box, y: 10 * box}];
+        let food = {x: Math.floor(Math.random() * 15) * box, y: Math.floor(Math.random() * 10) * box};
+        let d;
+        let snakeScore = 0;
+        let snakeGame;
+        let isSnakeGameRunning = false;
+
+        document.getElementById('startSnake').addEventListener('click', startSnakeGame);
+
+        function startSnakeGame() {
+            if (isSnakeGameRunning) {
+                clearInterval(snakeGame);
+            }
+            
+            snake = [{x: 9 * box, y: 10 * box}];
+            food = {x: Math.floor(Math.random() * 15) * box, y: Math.floor(Math.random() * 10) * box};
+            d = undefined;
+            snakeScore = 0;
+            document.getElementById('snakeScore').textContent = snakeScore;
+            isSnakeGameRunning = true;
+            
+            snakeGame = setInterval(gameLoop, 100);
+        }
+
+        function gameLoop() {
+            snakeCtx.clearRect(0, 0, snakeCanvas.width, snakeCanvas.height);
+            
+            // Draw snake
+            for (let i = 0; i < snake.length; i++) {
+                snakeCtx.fillStyle = i === 0 ? 'green' : 'lightgreen';
+                snakeCtx.fillRect(snake[i].x, snake[i].y, box, box);
+                snakeCtx.strokeStyle = 'white';
+                snakeCtx.strokeRect(snake[i].x, snake[i].y, box, box);
+            }
+            
+            // Draw food
+            snakeCtx.fillStyle = 'red';
+            snakeCtx.fillRect(food.x, food.y, box, box);
+            
+            // Snake head position
+            let snakeX = snake[0].x;
+            let snakeY = snake[0].y;
+            
+            // Direction handling
+            if (d === "LEFT") snakeX -= box;
+            if (d === "UP") snakeY -= box;
+            if (d === "RIGHT") snakeX += box;
+            if (d === "DOWN") snakeY += box;
+            
+            // Check collision with food
+            if (snakeX === food.x && snakeY === food.y) {
+                snakeScore++;
+                document.getElementById('snakeScore').textContent = snakeScore;
+                food = {x: Math.floor(Math.random() * 15) * box, y: Math.floor(Math.random() * 10) * box};
+            } else {
+                snake.pop();
+            }
+            
+            // Add new head
+            let newHead = {x: snakeX, y: snakeY};
+            
+            // Game over conditions
+            if (
+                snakeX < 0 || snakeY < 0 || 
+                snakeX >= snakeCanvas.width || snakeY >= snakeCanvas.height || 
+                collision(newHead, snake)
+            ) {
+                clearInterval(snakeGame);
+                isSnakeGameRunning = false;
+                snakeCtx.font = '20px Arial';
+                snakeCtx.fillStyle = 'black';
+                snakeCtx.textAlign = 'center';
+                snakeCtx.fillText(`Game Over! Score: ${snakeScore}`, snakeCanvas.width/2, snakeCanvas.height/2);
+            }
+            
+            snake.unshift(newHead);
+        }
+
+        function collision(head, array) {
+            for (let i = 0; i < array.length; i++) {
+                if (head.x === array[i].x && head.y === array[i].y) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        document.addEventListener('keydown', direction);
+
+        function direction(event) {
+            if (!isSnakeGameRunning) return;
+            
+            if (event.keyCode === 37 && d !== "RIGHT") {
+                d = "LEFT";
+            } else if (event.keyCode === 38 && d !== "DOWN") {
+                d = "UP";
+            } else if (event.keyCode === 39 && d !== "LEFT") {
+                d = "RIGHT";
+            } else if (event.keyCode === 40 && d !== "UP") {
+                d = "DOWN";
+            }
+        }
+
+        // Game 3: Memory Match
+        const memoryGame = document.getElementById('memoryGame');
+        const cards = ['A', 'B', 'C', 'D', 'E', 'F', 'A', 'B', 'C', 'D', 'E', 'F'];
+        let memoryMoves = 0;
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let canFlip = true;
+
+        document.getElementById('startMemory').addEventListener('click', setupMemoryGame);
+
+        function setupMemoryGame() {
+            memoryGame.innerHTML = '';
+            memoryMoves = 0;
+            document.getElementById('memoryMoves').textContent = memoryMoves;
+            flippedCards = [];
+            matchedPairs = 0;
+            canFlip = true;
+            
+            // Shuffle cards
+            const shuffledCards = [...cards].sort(() => 0.5 - Math.random());
+            
+            // Create card elements
+            shuffledCards.forEach((card, index) => {
+                const cardElement = document.createElement('div');
+                cardElement.classList.add('card');
+                cardElement.dataset.value = card;
+                cardElement.dataset.index = index;
+                cardElement.style.height = '70px';
+                cardElement.style.backgroundColor = '#3498db';
+                cardElement.style.display = 'flex';
+                cardElement.style.justifyContent = 'center';
+                cardElement.style.alignItems = 'center';
+                cardElement.style.color = 'white';
+                cardElement.style.fontSize = '24px';
+                cardElement.style.cursor = 'pointer';
+                cardElement.style.borderRadius = '4px';
+                cardElement.addEventListener('click', flipCard);
+                memoryGame.appendChild(cardElement);
+            });
+        }
+
+        function flipCard() {
+            if (!canFlip) return;
+            if (flippedCards.length >= 2) return;
+            if (this.textContent !== '' || flippedCards.includes(this.dataset.index)) return;
+            
+            this.textContent = this.dataset.value;
+            this.style.backgroundColor = 'white';
+            this.style.color = '#2c3e50';
+            flippedCards.push(this.dataset.index);
+            
+            if (flippedCards.length === 2) {
+                memoryMoves++;
+                document.getElementById('memoryMoves').textContent = memoryMoves;
+                canFlip = false;
+                setTimeout(checkForMatch, 500);
+            }
+        }
+
+        function checkForMatch() {
+            const card1 = document.querySelector(`[data-index="${flippedCards[0]}"]`);
+            const card2 = document.querySelector(`[data-index="${flippedCards[1]}"]`);
+            
+            if (card1.dataset.value === card2.dataset.value) {
+                card1.removeEventListener('click', flipCard);
+                card2.removeEventListener('click', flipCard);
+                card1.style.backgroundColor = '#2ecc71';
+                card2.style.backgroundColor = '#2ecc71';
+                matchedPairs++;
+                
+                if (matchedPairs === cards.length / 2) {
+                    setTimeout(() => {
+                        alert(`Congratulations! You won in ${memoryMoves} moves!`);
+                    }, 300);
+                }
+            } else {
+                card1.textContent = '';
+                card2.textContent = '';
+                card1.style.backgroundColor = '#3498db';
+                card2.style.backgroundColor = '#3498db';
+            }
+            
+            flippedCards = [];
+            canFlip = true;
+        }
+
+        // Initialize memory game on page load
+        setupMemoryGame();
+    </script>
+</body>
+</html>
